@@ -5,13 +5,20 @@ int	main()
 {
 	int	i;
 	t_stack *t;
+	t_stack	*tmp;
 
 	t = NULL;
 	i = 0;
+	tmp = t;
 	while (i < 10)
 	{
-		ft_push(&t, ft_stcknew(i));
+		ft_stckpush(&t, ft_stcknew(i));
 		i++;
+	}
+	while(i > 8)
+	{
+		ft_stckpop(&t);
+		i--;
 	}
 	while (t)
 	{

@@ -11,6 +11,7 @@ typedef	struct		s_stack
 }					t_stack;
 
 t_stack				*ft_stcknew(int val);
-void				ft_push(t_stack **stack, t_stack *new);
+void				ft_stckpush(t_stack **stack, t_stack *new);
+void				ft_stckpop(t_stack **stack);
 
 #endif
