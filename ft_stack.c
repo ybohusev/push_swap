@@ -1,29 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stack.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/12 15:07:47 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/12 15:07:48 by ybohusev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_stack.h"
 #include <stdio.h>
 
-int	main()
+int	main(int argc, char **argv)
 {
-	int	i;
-	t_stack *t;
+
+	t_stack *a;
+	t_stack	*b;
 	t_stack	*tmp;
 
-	t = NULL;
-	i = 0;
-	tmp = t;
-	while (i < 10)
+	a = ft_stckinit(argv, argc - 1);
+	ft_stckpush(&a, &b);
+	tmp = a;
+	while (tmp)
 	{
-		ft_stckpush(&t, ft_stcknew(i));
-		i++;
+		printf("%d\n", tmp->content);
+		tmp = tmp->next;
 	}
-	while(i > 8)
+	printf("_\na\n");
+	tmp = b;
+	while (tmp)
 	{
-		ft_stckpop(&t);
-		i--;
+		printf("%d\n", tmp->content);
+		tmp = tmp->next;
 	}
-	while (t)
-	{
-		printf("%d\n", t->content);
-		t = t->next;
-	}
+	printf("_\nb\n");
+	ft_stckdel(&a);
+	system("leaks test");
 	return (0);
 }

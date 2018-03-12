@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stckpop.c                                       :+:      :+:    :+:   */
+/*   ft_stckrevrot.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 15:08:18 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/12 15:08:19 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/12 18:28:42 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/12 18:28:43 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-void	ft_stckpop(t_stack **stack)
+void	ft_stckrevrot(t_stack **s)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
-	if (!(*stack))
+	tmp = *s;
+	if (*s == NULL || (*s)->next == NULL)
 		return ;
-	tmp = *stack;
-	free(tmp);
-	*stack = tmp->next;
+	while (tmp->next)
+		tmp = tmp->next;
+	ft_stckaddtop(s, ft_stcknew(tmp->content));
+	ft_stckdellast(s);
 }

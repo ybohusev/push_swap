@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stckpop.c                                       :+:      :+:    :+:   */
+/*   ft_stckswap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 15:08:18 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/12 15:08:19 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/12 16:47:19 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/12 16:47:20 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-void	ft_stckpop(t_stack **stack)
+void	ft_stckswap(t_stack *s)
 {
-	t_stack *tmp;
+	int		a;
 
-	if (!(*stack))
+	if (s == NULL || s->next == NULL)
 		return ;
-	tmp = *stack;
-	free(tmp);
-	*stack = tmp->next;
+	a = s->content;
+	s->content = s->next->content;
+	s->next->content = a;
 }

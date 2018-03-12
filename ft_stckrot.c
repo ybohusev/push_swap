@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stckpop.c                                       :+:      :+:    :+:   */
+/*   ft_stckrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 15:08:18 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/12 15:08:19 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/12 17:36:36 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/12 17:36:38 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-void	ft_stckpop(t_stack **stack)
+void	ft_stckrot(t_stack **s)
 {
-	t_stack *tmp;
-
-	if (!(*stack))
+	if (*s == NULL || (*s)->next == NULL)
 		return ;
-	tmp = *stack;
-	free(tmp);
-	*stack = tmp->next;
+	ft_stckaddback(s, ft_stcknew((*s)->content));
+	ft_stckpop(s);
 }
