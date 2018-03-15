@@ -72,7 +72,6 @@ void	ra_rb_rr(t_stack **a, t_stack **b, char mode, int pr)
 		if (pr == 1)
 			ft_putstr("rr");
 	}
-
 }
 
 void	rra_rrb_rrr(t_stack **a, t_stack **b, char mode, int pr)

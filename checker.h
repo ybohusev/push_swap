@@ -16,7 +16,7 @@
 # define RRR 342
 
 void	get_instruction(char *inst, t_stack **op);
-int		is_valid_instruction(int nb);
+int		is_valid_instruction(char *i);
 int		nb_inst(char *inst);
 
 #endif

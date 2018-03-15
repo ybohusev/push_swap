@@ -15,26 +15,22 @@ int		nb_inst(char *inst)
 	return (nb);
 }
 
-int		is_valid_instruction(int nb)
+int		is_valid_instruction(char *i)
 {
-	printf("HERE %d\n", nb);
-	if (!nb || nb != SA || nb != SB ||
-		nb != SS || nb != PA ||
-		nb != PB || nb != RA ||
-		nb != RB || nb != RR ||
-		nb != RRA || nb != RRB ||
-		nb != RRR)
-		return (0);
-	return (1);
+	if (!ft_strcmp(i, "sa") || !ft_strcmp(i, "sb") ||
+		!ft_strcmp(i, "ss") || !ft_strcmp(i, "pa") ||
+		!ft_strcmp(i, "pb") || !ft_strcmp(i, "ra") ||
+		!ft_strcmp(i, "rb") || !ft_strcmp(i, "rr") ||
+		!ft_strcmp(i, "rra") || !ft_strcmp(i, "rrb") ||
+		!ft_strcmp(i, "rrr") || *i == '\0')
+		return (1);
+	return (0);
 }
 
 void	get_instruction(char *inst, t_stack **op)
 {
-	int		nb;
-
-	nb =  nb_inst(inst);
-	if (is_valid_instruction(nb))
-		ft_stckaddback(op, ft_stcknew(nb));
+	if (is_valid_instruction(inst))
+		ft_stckaddback(op, ft_stcknew(nb_inst(inst)));
 	else
 	{
 		if (*op != NULL)

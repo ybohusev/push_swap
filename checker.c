@@ -13,23 +13,35 @@
 #include "checker.h"
 #include <stdio.h>
 
+// void	do_inst(t_stack *a, t_stack *inst)
+// {
+// 	t_stack *b;
+
+// 	b = NULL;
+
+// }
+
 int		main(int argc, char **argv)
 {
 	char	*inst;
 	t_stack	*op;
 	t_stack	*stack;
+	int yr;
 
+	op = NULL;
+	stack = NULL;
 	if (argc == 1)
 		return (0);
-	while (get_next_line(0, &inst) > 0 && *inst != '\0')
+	stack = ft_stckinit(argv, argc - 1);
+	while ((yr = get_next_line(0, &inst)) > 0)
 	{
+		printf("%d\n", yr);
 		get_instruction(inst, &op);
 		free(inst);
 	}
-	while (op->next)
-	{
-		printf("%d\n", op->content);
-		op = op->next;
-	}
+	printf("%d\n", op->content);
+	// do_inst(stack, op);
+	ft_stckdel(&op);
+	ft_stckdel(&stack);
 	return (0);
 }
