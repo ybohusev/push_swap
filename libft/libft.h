@@ -20,6 +20,9 @@
 # include <unistd.h>
 # include "get_next_line.h"
 
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
+
 typedef	struct		s_list
 {
 	void			*content;

@@ -34,4 +34,12 @@ void				ft_stckrevrot(t_stack **s);
 void				ft_stckdellast(t_stack **stack);
 void				ft_stckdel(t_stack **stack);
 
+void				sa_sb_ss(t_stack *a, t_stack *b, char mode, int pr);
+void				pa_pb(t_stack **a, t_stack **b, char mode, int pr);
+void				ra_rb_rr(t_stack **a, t_stack **b, char mode, int pr);
+void				rra_rrb_rrr(t_stack **a, t_stack **b, char mode, int pr);
+
+int					is_valid_argument(t_stack *stack, char *arg);
+int					is_valid_instriction(char *inst);
+
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack.c                                         :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 15:07:47 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/12 15:07:48 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/15 13:47:11 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/15 13:47:12 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,18 @@
 
 int	main(int argc, char **argv)
 {
+	char	*inst;
+	t_stack	*op;
+	t_stack	*stack;
+	int		eof;
 
-	t_stack *a;
-	t_stack	*b;
-	t_stack	*tmp;
-
-	a = ft_stckinit(argv, argc - 1);
-	ft_stckpush(&a, &b);
-	tmp = a;
-	while (tmp)
+	if (argc == 1)
+		return (0);
+	while ((eof = get_next_line(0, &inst)) > 0 && *inst != '\0')
 	{
-		printf("%d\n", tmp->content);
-		tmp = tmp->next;
+		if (is_valid_instriction)
+			
+		free(inst);
 	}
-	printf("_\na\n");
-	tmp = b;
-	while (tmp)
-	{
-		printf("%d\n", tmp->content);
-		tmp = tmp->next;
-	}
-	printf("_\nb\n");
-	ft_stckdel(&a);
-	system("leaks test");
 	return (0);
 }

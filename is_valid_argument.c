@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stckinit.c                                      :+:      :+:    :+:   */
+/*   is_valid_argument.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 15:09:29 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/12 15:09:30 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/15 14:58:54 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/15 14:58:58 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-t_stack		*ft_stckinit(char **arg, int count)
+int		is_valid_argument(t_stack *stack, char *arg)
 {
-	t_stack		*stack;
+	int		i;
+	int		nb;
 
-	stack = NULL;
-	if (arg == NULL || count == 0)
-		return (NULL);
-	while (count > 0)
+	i = 0;
+	while (arg[i])
 	{
-		if (is_valid_argument(stack, arg[count]))
-		{
-			ft_stckaddtop(&stack, ft_stcknew(ft_atoi(arg[count])));
-			count--;
-		}
-		else
-		{
-			if (stack != NULL)
-				ft_stckdel(&stack);
-			write(2, "Error\n", 6);
-			exit(1);
-		}
+		if (!ft_isdigit(arg[i]))
+			return (0);
+		i++;
 	}
-	return (stack);
+	nb = ft_atoi(arg);
+	if (nb > MAX_INT || nb < MIN_INT)
+		return (0);
+	while (stack)
+	{
+		if (stack->content == nb)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }
