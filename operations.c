@@ -97,15 +97,3 @@ void	rra_rrb_rrr(t_stack **a, t_stack **b, char mode, int pr)
 			ft_putstr("rrr");
 	}
 }
-
-int		is_valid_instriction(char *inst)
-{
-	if (!inst || ft_strcmp("sa", inst) ||
-		ft_strcmp("sb", inst) || ft_strcmp("ss", inst) ||
-		ft_strcmp("pa", inst) || ft_strcmp("pb", inst) ||
-		ft_strcmp("ra", inst) || ft_strcmp("rb", inst) ||
-		ft_strcmp("rr", inst) || ft_strcmp("rra", inst) ||
-		ft_strcmp("rrb", inst) || ft_strcmp("rrr", inst))
-		return (0);
-	return (1);
-}

@@ -10,23 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stack.h"
+#include "checker.h"
 #include <stdio.h>
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	char	*inst;
 	t_stack	*op;
 	t_stack	*stack;
-	int		eof;
 
 	if (argc == 1)
 		return (0);
-	while ((eof = get_next_line(0, &inst)) > 0 && *inst != '\0')
+	while (get_next_line(0, &inst) > 0 && *inst != '\0')
 	{
-		if (is_valid_instriction)
-			
+		get_instruction(inst, &op);
 		free(inst);
+	}
+	while (op->next)
+	{
+		printf("%d\n", op->content);
+		op = op->next;
 	}
 	return (0);
 }

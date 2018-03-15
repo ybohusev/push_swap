@@ -40,6 +40,5 @@ void				ra_rb_rr(t_stack **a, t_stack **b, char mode, int pr);
 void				rra_rrb_rrr(t_stack **a, t_stack **b, char mode, int pr);
 
 int					is_valid_argument(t_stack *stack, char *arg);
-int					is_valid_instriction(char *inst);
 
 #endif
