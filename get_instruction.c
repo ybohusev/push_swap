@@ -1,36 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_instruction.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/16 19:51:14 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/16 19:51:16 by ybohusev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
-
-int		nb_inst(char *inst)
-{
-	int		nb;
-	int		count;
-
-	count = 0;
-	nb = 0;
-	while (inst[count])
-	{
-		nb += inst[count];
-		count++;
-	}
-	return (nb);
-}
 
 int		is_valid_instruction(char *i)
 {
-	if (!ft_strcmp(i, "sa") || !ft_strcmp(i, "sb") ||
-		!ft_strcmp(i, "ss") || !ft_strcmp(i, "pa") ||
-		!ft_strcmp(i, "pb") || !ft_strcmp(i, "ra") ||
-		!ft_strcmp(i, "rb") || !ft_strcmp(i, "rr") ||
-		!ft_strcmp(i, "rra") || !ft_strcmp(i, "rrb") ||
-		!ft_strcmp(i, "rrr") || *i == '\0')
+	if (!ft_strcmp(i, "sa"))
 		return (1);
-	return (0);
+	else if (!ft_strcmp(i, "sb"))
+		return (2);
+	else if (!ft_strcmp(i, "ss"))
+		return (3);
+	else if (!ft_strcmp(i, "pa"))
+		return (4);
+	else if (!ft_strcmp(i, "pb"))
+		return (5);
+	else if (!ft_strcmp(i, "ra"))
+		return (6);
+	else if (!ft_strcmp(i, "rb"))
+		return (7);
+	else if (!ft_strcmp(i, "rr"))
+		return (8);
+	else if (!ft_strcmp(i, "rra"))
+		return (9);
+	else if (!ft_strcmp(i, "rrb"))
+		return (10);
+	else if (!ft_strcmp(i, "rrr"))
+		return (11);
+	else if (*i == '\0')
+		return (0);
+	return (-1);
 }
 
 void	get_instruction(char *inst, t_stack **op)
 {
-	if (is_valid_instruction(inst))
-		ft_stckaddback(op, ft_stcknew(nb_inst(inst)));
+	int		nb;
+
+	nb = is_valid_instruction(inst);
+	if (nb != -1)
+		ft_stckaddback(op, ft_stcknew(nb));
 	else
 	{
 		if (*op != NULL)

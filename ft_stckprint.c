@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_argument.c                                :+:      :+:    :+:   */
+/*   ft_stckprint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/15 14:58:54 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/15 14:58:58 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/16 18:07:24 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/16 18:07:25 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-int		is_valid_argument(t_stack *stack, char *arg)
+void	ft_stckprint(t_stack *stack, char *s_name)
 {
-	int		i;
-	int		nb;
+	char	*tmp;
 
-	i = 0;
-	if (arg[i] == '-')
-		i++;
-	while (arg[i])
-	{
-		if (!ft_isdigit(arg[i]))
-			return (0);
-		i++;
-	}
-	nb = ft_atoi(arg);
+	ft_putstr("*******\n");
+	if (!stack)
+		ft_putstr("empty\n");
 	while (stack)
 	{
-		if (stack->content == nb)
-			return (0);
+		tmp = ft_itoa(stack->content);
+		ft_putstr(tmp);
+		ft_putstr("\n");
+		free(tmp);
 		stack = stack->next;
 	}
-	return (1);
+	ft_putstr("_______\n");
+	ft_putstr(s_name);
+	ft_putstr("\n");
 }

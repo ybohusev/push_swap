@@ -10,11 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(char *str)
+#include "libft.h"
+#include <stdio.h>
+
+static	void	check_extr(long long res, int is_negative)
 {
-	unsigned long long	res;
-	int					i;
-	int					is_negative;
+	res = res * is_negative;
+	if (res > MAX_INT || res < MIN_INT)
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
+}
+
+extern	int		ft_atoi(char *str)
+{
+	long long	res;
+	int			i;
+	int			is_negative;
 
 	res = 0;
 	is_negative = 1;
@@ -30,9 +43,6 @@ int		ft_atoi(char *str)
 		i++;
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 		res = (res * 10) + (str[i++] - 48);
-	if (res > 9223372036854775807 && is_negative == -1)
-		return (0);
-	if (res > 9223372036854775807)
-		return (-1);
+	check_extr(res, is_negative);
 	return ((int)res * is_negative);
 }

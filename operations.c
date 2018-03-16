@@ -18,20 +18,20 @@ void	sa_sb_ss(t_stack *a, t_stack *b, char mode, int pr)
 	{
 		ft_stckswap(a);
 		if (pr == 1)
-			ft_putstr("sa");
+			ft_putstr("sa\n");
 	}
 	else if (mode == 'b')
 	{
 		ft_stckswap(b);
 		if (pr == 1)
-			ft_putstr("sb");
+			ft_putstr("sb\n");
 	}
 	else if (mode == 's')
 	{
 		ft_stckswap(a);
 		ft_stckswap(b);
 		if (pr == 1)
-			ft_putstr("ss");
+			ft_putstr("ss\n");
 	}
 }
 
@@ -39,15 +39,15 @@ void	pa_pb(t_stack **a, t_stack **b, char mode, int pr)
 {
 	if (mode == 'a')
 	{
-		ft_stckpush(a, b);
+		ft_stckpush(b, a);
 		if (pr == 1)
-			ft_putstr("pb");
+			ft_putstr("pa\n");
 	}
 	else if (mode == 'b')
 	{
-		ft_stckpush(b, a);
+		ft_stckpush(a, b);
 		if (pr == 1)
-			ft_putstr("pa");
+			ft_putstr("pb\n");
 	}
 }
 
@@ -57,20 +57,20 @@ void	ra_rb_rr(t_stack **a, t_stack **b, char mode, int pr)
 	{
 		ft_stckrot(a);
 		if (pr == 1)
-			ft_putstr("ra");
+			ft_putstr("ra\n");
 	}
 	else if (mode == 'b')
 	{
 		ft_stckrot(b);
 		if (pr == 1)
-			ft_putstr("rb");
+			ft_putstr("rb\n");
 	}
 	else if (mode == 'r')
 	{
 		ft_stckrot(a);
 		ft_stckrot(b);
 		if (pr == 1)
-			ft_putstr("rr");
+			ft_putstr("rr\n");
 	}
 }
 
@@ -80,19 +80,27 @@ void	rra_rrb_rrr(t_stack **a, t_stack **b, char mode, int pr)
 	{
 		ft_stckrevrot(a);
 		if (pr == 1)
-			ft_putstr("rra");
+			ft_putstr("rra\n");
 	}
 	else if (mode == 'b')
 	{
 		ft_stckrevrot(b);
 		if (pr == 1)
-			ft_putstr("rrb");
+			ft_putstr("rrb\n");
 	}
 	else if (mode == 'r')
 	{
 		ft_stckrevrot(a);
 		ft_stckrevrot(b);
 		if (pr == 1)
-			ft_putstr("rrr");
+			ft_putstr("rrr\n");
 	}
+}
+
+void	print_a_b(t_stack *a, t_stack *b)
+{
+	ft_stckprint(a, "stack A");
+	ft_putstr("\n");
+	ft_stckprint(b, "stack B");
+	ft_putstr("\n");
 }
