@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/16 19:53:58 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/16 19:54:00 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/17 13:53:33 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/17 13:53:34 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "push_swap.h"
+#include <stdio.h>
 
-# include "ft_stack.h"
+int		main(int argc, char **argv)
+{
+	t_stack	*a;
+	t_stack	*b;
 
-# define SA 1
-# define SB 2
-# define SS 3
-# define PA 4
-# define PB 5
-# define RA 6
-# define RB 7
-# define RR 8
-# define RRA 9
-# define RRB 10
-# define RRR 11
-
-void	get_instruction(char *inst, t_stack **op);
-
-#endif
+	a = NULL; 
+	b = NULL;
+	if (argc == 1)
+		return (0);
+	a = ft_stckinit(argv, argc - 1);
+	basic_algor(&a, &b);
+	return (0);
+}

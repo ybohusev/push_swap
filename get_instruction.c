@@ -12,7 +12,7 @@
 
 #include "checker.h"
 
-int		is_valid_instruction(char *i)
+static	int		is_valid_instruction(char *i)
 {
 	if (!ft_strcmp(i, "sa"))
 		return (1);
@@ -41,7 +41,7 @@ int		is_valid_instruction(char *i)
 	return (-1);
 }
 
-void	get_instruction(char *inst, t_stack **op)
+extern	void	get_instruction(char *inst, t_stack **op)
 {
 	int		nb;
 

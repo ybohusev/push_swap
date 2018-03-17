@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ft_stcklen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/16 19:53:58 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/16 19:54:00 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/17 16:54:37 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/17 16:54:38 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "ft_stack.h"
 
-# include "ft_stack.h"
+int		ft_stcklen(t_stack *stack)
+{
+	int		len;
 
-# define SA 1
-# define SB 2
-# define SS 3
-# define PA 4
-# define PB 5
-# define RA 6
-# define RB 7
-# define RR 8
-# define RRA 9
-# define RRB 10
-# define RRR 11
-
-void	get_instruction(char *inst, t_stack **op);
-
-#endif
+	len = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		len++;
+	}
+	return (len);
+}

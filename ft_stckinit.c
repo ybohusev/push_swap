@@ -19,7 +19,16 @@ t_stack		*ft_stckinit(char **arg, int count)
 	stack = NULL;
 	if (arg == NULL || count == 0)
 		return (NULL);
-	while (count > 0)
+	/*START TEMPORARY KOSTYL'*/
+	if (count == 1)
+	{
+		arg = ft_strsplit(arg[1], ' ');
+		count = 0;
+		while (arg[count + 1])
+			count++;
+	}
+	/*END TEMPORARY KOSTYL'*/
+	while (count >= 0)
 	{
 		if (is_valid_argument(stack, arg[count]))
 		{

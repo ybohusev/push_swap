@@ -16,9 +16,9 @@ void	ft_stckprint(t_stack *stack, char *s_name)
 {
 	char	*tmp;
 
-	ft_putstr("*******\n");
+	ft_putstr("\033[33m*******\033[37m\n");
 	if (!stack)
-		ft_putstr("empty\n");
+		ft_putstr("\033[36mempty\033[37m\n");
 	while (stack)
 	{
 		tmp = ft_itoa(stack->content);
@@ -27,7 +27,7 @@ void	ft_stckprint(t_stack *stack, char *s_name)
 		free(tmp);
 		stack = stack->next;
 	}
-	ft_putstr("_______\n");
+	ft_putstr("\033[33m_______\033[31m\n");
 	ft_putstr(s_name);
-	ft_putstr("\n");
+	ft_putstr("\033[37m\n");
 }

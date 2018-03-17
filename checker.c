@@ -13,7 +13,7 @@
 #include "checker.h"
 #include <stdio.h>
 
-void	check_sort(t_stack *a, t_stack *b)
+static	void	check_sort(t_stack *a, t_stack *b)
 {
 	if (b)
 	{
@@ -33,7 +33,7 @@ void	check_sort(t_stack *a, t_stack *b)
 	write(1, "OK\n", 3);
 }
 
-void	do_inst(t_stack **a, t_stack **b, t_stack *inst)
+static	void	do_inst(t_stack **a, t_stack **b, t_stack *inst)
 {
 	if (inst->content == SA)
 		sa_sb_ss(*a, *b, 'a', 0);
@@ -61,7 +61,7 @@ void	do_inst(t_stack **a, t_stack **b, t_stack *inst)
 		do_inst(a, b, inst);
 }
 
-int		main(int argc, char **argv)
+extern	int		main(int argc, char **argv)
 {
 	char	*inst;
 	t_stack	*op;
@@ -85,6 +85,5 @@ int		main(int argc, char **argv)
 	check_sort(a, b);
 	ft_stckdel(&op);
 	ft_stckdel(&a);
-	system("leaks test");
 	return (0);
 }
