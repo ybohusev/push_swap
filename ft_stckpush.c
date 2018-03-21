@@ -16,6 +16,6 @@ void	ft_stckpush(t_stack **src, t_stack **dst)
 {
 	if (*src == NULL)
 		return ;
-	ft_stckaddtop(dst, ft_stcknew((*src)->content));
+	ft_stckaddtop(dst, ft_stcknew((*src)->content, (*src)->median));
 	ft_stckpop(src);
 }

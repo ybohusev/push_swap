@@ -16,6 +16,6 @@ void	ft_stckrot(t_stack **s)
 {
 	if (*s == NULL || (*s)->next == NULL)
 		return ;
-	ft_stckaddback(s, ft_stcknew((*s)->content));
+	ft_stckaddback(s, ft_stcknew((*s)->content, (*s)->median));
 	ft_stckpop(s);
 }

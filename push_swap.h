@@ -15,6 +15,6 @@
 
 # include "ft_stack.h"
 
-void	basic_algor(t_stack **a, t_stack **b);
+void	basic_algor(t_stack *a, t_stack *b);
 
 #endif

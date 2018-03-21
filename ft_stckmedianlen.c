@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_stckmedianlen.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/17 13:53:33 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/17 13:53:34 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/21 13:55:56 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/21 13:57:07 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#include "ft_stack.h"
 
-int		main(int argc, char **argv)
+int		median_len(t_stack *stack, int curr_median)
 {
-	t_stack	*a;
-	t_stack	*b;
+	int		len;
 
-	a = NULL; 
-	b = NULL;
-	if (argc == 1)
-		return (0);
-	a = ft_stckinit(argv, argc - 1);
-	basic_algor(a, b);
-	return (0);
+	len = 0;
+	while (stack && (stack->median == curr_median))
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);
 }

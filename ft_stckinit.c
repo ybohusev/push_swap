@@ -32,7 +32,7 @@ t_stack		*ft_stckinit(char **arg, int count)
 	{
 		if (is_valid_argument(stack, arg[count]))
 		{
-			ft_stckaddtop(&stack, ft_stcknew(ft_atoi(arg[count])));
+			ft_stckaddtop(&stack, ft_stcknew(ft_atoi(arg[count]), 0));
 			count--;
 		}
 		else

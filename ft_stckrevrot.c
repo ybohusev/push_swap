@@ -21,6 +21,6 @@ void	ft_stckrevrot(t_stack **s)
 		return ;
 	while (tmp->next)
 		tmp = tmp->next;
-	ft_stckaddtop(s, ft_stcknew(tmp->content));
+	ft_stckaddtop(s, ft_stcknew(tmp->content, tmp->median));
 	ft_stckdellast(s);
 }

@@ -12,7 +12,7 @@
 
 #include "ft_stack.h"
 
-t_stack		*ft_stcknew(int val)
+t_stack		*ft_stcknew(int val, int median)
 {
 	t_stack	*new;
 
@@ -20,6 +20,7 @@ t_stack		*ft_stcknew(int val)
 	if (!new)
 		return (NULL);
 	new->content = val;
+	new->median = median;
 	new->next = NULL;
 	return (new);
 }

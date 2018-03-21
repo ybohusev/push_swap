@@ -19,10 +19,11 @@
 typedef	struct		s_stack
 {
 	int				content;
+	int				median;
 	struct s_stack	*next;
 }					t_stack;
 
-t_stack				*ft_stcknew(int val);
+t_stack				*ft_stcknew(int val, int median);
 void				ft_stckaddtop(t_stack **stack, t_stack *new);
 void				ft_stckpop(t_stack **stack);
 t_stack				*ft_stckinit(char **arg, int count);
@@ -35,6 +36,7 @@ void				ft_stckdellast(t_stack **stack);
 void				ft_stckdel(t_stack **stack);
 void				ft_stckprint(t_stack *stack, char *s_name);
 int					ft_stcklen(t_stack *stack);
+void				ft_stckgetmedian(t_stack *stack);
 
 void				sa_sb_ss(t_stack *a, t_stack *b, char mode, int pr);
 void				pa_pb(t_stack **a, t_stack **b, char mode, int pr);
@@ -43,5 +45,8 @@ void				rra_rrb_rrr(t_stack **a, t_stack **b, char mode, int pr);
 void				print_a_b(t_stack *a, t_stack *b);
 
 int					is_valid_argument(t_stack *stack, char *arg);
+
+int					median_len(t_stack *stack, int curr_median);
+void				ft_stckgetmedian(t_stack *stack);
 
 #endif

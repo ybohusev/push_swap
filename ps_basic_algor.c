@@ -12,106 +12,95 @@
 
 #include "push_swap.h"
 
-static	int		get_pivot(t_stack *stack)
+static	int		is_sorted(t_stack *a)
 {
-	while (stack->next)
-		stack = stack->next;
-	return (stack->content);
-}
-
-static	int		is_sorted(t_stack *stack, char mode)
-{
-	if (!stack)
+	if (!a)
 		return (0);
-	while (stack->next)
+	while (a->next)
 	{
-		if (mode == 'a')
-		{
-			if (stack->content < stack->next->content)
-				stack = stack->next;
-			else
-				return (0);
-		}
-		else if (mode == 'd')
-		{
-			if (stack->content > stack->next->content)
-				stack = stack->next;
-			else
-				return (0);
-		}	
+		if (a->content < a->next->content)
+			a = a->next;
+		else
+			return (0);	
 	}
 	return (1);
 }
 
-static	int		max_elem(t_stack *stack)
+static	int		pb_while(t_stack **a, t_stack **b)
 {
-	int		i;
+	int		len;
+	int		count;
 
-	i = stack->content;
-	while (stack)
+	len = median_len(*a, (*a)->median);
+	ft_stckgetmedian(*a);
+	count = 0;
+	if (median_len(*a, (*a)->median) <= 3)
+		return (0);
+	while (len)
 	{
-		if (i < stack->content)
-			i = stack->content;
-		stack = stack->next;
+		if ((*a)->content < (*a)->median)
+			pa_pb(a, b, 'b', 1);
+		else if ((*a)->content == (*a)->median && (median_len(*a, (*a)->median) % 2 != 0))
+			pa_pb(a, b, 'b', 1);
+		else
+		{
+			ra_rb_rr(a, b, 'a', 1);
+			count++;
+		}
+		len--;
 	}
-	return (i);
+	count += pb_while(a, b);
+	return (count);
 }
 
-extern	void	basic_algor(t_stack **a, t_stack **b)
+static	void	pa_while(t_stack **a, t_stack **b)
 {
-	int		pivot;
-	int		len;
-	int		max_a;
+	int		top_median;
+	t_stack	*tmp;
 
-	pivot = get_pivot(*a);
-	len = ft_stcklen(*a);
-	while (len > 3 && !(is_sorted(*a, 'a') && is_sorted(*b, 'd')))
+	top_median = (*b)->median;
+	tmp = *b;
+	while (tmp && tmp->median == top_median)
 	{
-		if (pivot >= (*a)->content && (len = len - 1))
-		{
-			if (pivot == (*a)->content)
-				pivot = get_pivot(*a);
-			pa_pb(a, b, 'b', 1);
-		}
-		else
-			ra_rb_rr(a, b, 'a', 1);
-		if (ft_stcklen(*b) > 1)
-		{
-			if ((*b)->content < get_pivot(*b) || (*b)->content < (*b)->next->content)
-			{
-				if ((*b)->content - get_pivot(*b) < (*b)->content - (*b)->next->content)
-					ra_rb_rr(a, b, 'b', 1);
-				else if ((*b)->content - get_pivot(*b) >= (*b)->content - (*b)->next->content)
-					sa_sb_ss(*a, *b, 'b', 1);
-			}
-		}
+		printf("%d\n", tmp->median);
+		pa_pb(a, b, 'a', 1);
+		tmp = tmp->next;
 	}
-	max_a = max_elem(*a);
-	while (!is_sorted(*a, 'a'))
+}
+
+static	void	sort_top(t_stack **a, t_stack **b)
+{
+	int		count;
+
+	if (median_len(*a, (*a)->median) == 2 && !is_sorted(*a))
 	{
-		if ((*a)->content == max_a)
-			ra_rb_rr(a, b, 'a', 1);
-		else if ((*a)->next->content == max_a)
-			sa_sb_ss(*a, *b, 'a', 1);
-		if ((*a)->content > (*a)->next->content && (*a)->content != max_a)
-			sa_sb_ss(*a, *b, 'a', 1);
+		sa_sb_ss(*a, *b, 'a', 1);
+		return ;
 	}
+	else if (median_len(*a, (*a)->median) == 1)
+		return ;
+	ft_stckgetmedian(*a);
+	count = pb_while(a, b);
+	while (count)
+	{
+		rra_rrb_rrr(a, b, 'a', 1);
+		count--;
+	}
+	// print_a_b(*a, *b);
+}
+
+extern	void	basic_algor(t_stack *a, t_stack *b)
+{
+	if (is_sorted(a) && !b)
+		return ;
+	// print_a_b(a, b);
+	pb_while(&a, &b);
+	sort_top(&a, &b);
 	
-	while (*b)
-	{
-		if (ft_stcklen(*b) > 1)
-		{
-			if ((*b)->content < get_pivot(*b) || (*b)->content < (*b)->next->content)
-			{
-				if ((*b)->content - get_pivot(*b) < (*b)->content - (*b)->next->content)
-					ra_rb_rr(a, b, 'b', 1);
-				else if ((*b)->content - get_pivot(*b) >= (*b)->content - (*b)->next->content)
-					sa_sb_ss(*a, *b, 'b', 1);
-			}
-			else
-				pa_pb(a, b, 'a', 1);
-		}
-		else
-			pa_pb(a, b, 'a', 1);
-	}
+	pa_while(&a, &b);
+	sort_top(&a, &b);
+
+	// print_a_b(a, b);
+
+	basic_algor(a, b);
 }
