@@ -33,14 +33,13 @@ static	int		pb_while(t_stack **a, t_stack **b)
 
 	len = median_len(*a, (*a)->median);
 	ft_stckgetmedian(*a);
+	printf("MEDIAN %d\n", (*a)->median);
 	count = 0;
-	if (median_len(*a, (*a)->median) <= 3)
+	if (len <= 3)
 		return (0);
 	while (len)
 	{
 		if ((*a)->content < (*a)->median)
-			pa_pb(a, b, 'b', 1);
-		else if ((*a)->content == (*a)->median && (median_len(*a, (*a)->median) % 2 != 0))
 			pa_pb(a, b, 'b', 1);
 		else
 		{
@@ -62,45 +61,111 @@ static	void	pa_while(t_stack **a, t_stack **b)
 	tmp = *b;
 	while (tmp && tmp->median == top_median)
 	{
-		printf("%d\n", tmp->median);
 		pa_pb(a, b, 'a', 1);
 		tmp = tmp->next;
+	}
+}
+
+static	void	sort_three(t_stack **a, t_stack **b)
+{
+	if ((*a)->content == (*a)->median)
+	{
+		if ((*a)->content > (*a)->next->content)
+			sa_sb_ss(*a, *b, 'a', 1);
+		else if ((*a)->content < (*a)->next->content)
+		{
+			ra_rb_rr(a, b, 'a', 1);
+			sa_sb_ss(*a, *b, 'a', 1);
+			rra_rrb_rrr(a, b, 'a', 1);
+			sa_sb_ss(*a, *b, 'a', 1);
+		}
+	}
+	else if ((*a)->next->content == (*a)->median)
+	{
+			sa_sb_ss(*a, *b, 'a', 1);
+			ra_rb_rr(a, b, 'a', 1);
+			sa_sb_ss(*a, *b, 'a', 1);
+			rra_rrb_rrr(a, b, 'a', 1);
+			sa_sb_ss(*a, *b, 'a', 1);
+	}
+	else if ((*a)->next->next->content == (*a)->median)
+	{
+		if ((*a)->content > (*a)->next->content)
+		{
+			sa_sb_ss(*a, *b, 'a', 1);
+			ra_rb_rr(a, b, 'a', 1);
+			sa_sb_ss(*a, *b, 'a', 1);
+			rra_rrb_rrr(a, b, 'a', 1);
+		}
+		else if ((*a)->content < (*a)->next->content)
+		{
+			ra_rb_rr(a, b, 'a', 1);
+			sa_sb_ss(*a, *b, 'a', 1);
+			rra_rrb_rrr(a, b, 'a', 1);
+		}
 	}
 }
 
 static	void	sort_top(t_stack **a, t_stack **b)
 {
 	int		count;
+	int		len;
 
-	if (median_len(*a, (*a)->median) == 2 && !is_sorted(*a))
-	{
-		sa_sb_ss(*a, *b, 'a', 1);
-		return ;
-	}
-	else if (median_len(*a, (*a)->median) == 1)
-		return ;
+	len = median_len(*a, (*a)->median);
 	ft_stckgetmedian(*a);
-	count = pb_while(a, b);
-	while (count)
+	if (len == 2 && !is_sorted(*a))
+		sa_sb_ss(*a, *b, 'a', 1);
+	else if (len == 3 && !is_sorted(*a))
+		sort_three(a, b);
+	else if (len > 3)
 	{
-		rra_rrb_rrr(a, b, 'a', 1);
-		count--;
+		count = pb_while(a, b);
+		while (count > 0)
+		{
+			rra_rrb_rrr(a, b, 'a', 1);
+			count--;
+		}
+		sort_top(a, b);
 	}
-	// print_a_b(*a, *b);
+}
+
+static	void	sort_a(t_stack **a, t_stack **b)
+{
+	ft_stckgetmedian(*a);
+	if ((*a)->content == (*a)->median)
+	{
+		if ((*a)->content > (*a)->next->content)
+			sa_sb_ss(*a, *b, 'a', 1);
+		else if ((*a)->content < (*a)->next->content)
+			rra_rrb_rrr(a, b, 'a', 1);
+	}
+	else if ((*a)->next->content == (*a)->median && (*a)->content > (*a)->next->next->content)
+	{
+			ra_rb_rr(a, b, 'a', 1);
+			sa_sb_ss(*a, *b, 'a', 1);
+	}
+	else if ((*a)->next->next->content == (*a)->median)
+	{
+		if ((*a)->content > (*a)->next->content)
+			ra_rb_rr(a, b, 'a', 1);
+		else if ((*a)->content < (*a)->next->content)
+		{
+			sa_sb_ss(*a, *b, 'a', 1);
+			ra_rb_rr(a, b, 'a', 1);
+		}
+	}
 }
 
 extern	void	basic_algor(t_stack *a, t_stack *b)
 {
-	if (is_sorted(a) && !b)
+	if (is_sorted(a))
 		return ;
-	// print_a_b(a, b);
-	pb_while(&a, &b);
-	sort_top(&a, &b);
-	
-	pa_while(&a, &b);
-	sort_top(&a, &b);
-
-	// print_a_b(a, b);
-
-	basic_algor(a, b);
+	if (median_len(a, a->median) > 3)
+		pb_while(&a, &b);
+	sort_a(&a, &b);
+	while (b)
+	{
+		pa_while(&a, &b);
+		sort_top(&a, &b);
+	}
 }
