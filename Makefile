@@ -94,7 +94,7 @@ $(DIR_PUSH_O)/%.o: $(DIR_PUSH)/%.c
 	@$(C) $(FLAGS) -c -I $(INCLUDES) -o $@ -c $<
 
 $(CHECKER): $(OBJS_CHECKER)
-	@$(C) $(FLAGS) $(CHECKER) $(OBJS_CHECKER) $(OBJS_STACK) $(LIB) -I $(INCLUDES)
+	@$(C) $(FLAGS) -o $(CHECKER) $(OBJS_CHECKER) $(OBJS_STACK) $(LIB) -I $(INCLUDES)
 
 $(DIR_CHECKER_O)/%.o: $(DIR_CHECKER)/%.c
 	@mkdir -p $(DIR_CHECKER_O)
