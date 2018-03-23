@@ -33,7 +33,6 @@ static	int		pb_while(t_stack **a, t_stack **b)
 
 	len = median_len(*a, (*a)->median);
 	ft_stckgetmedian(*a);
-	printf("MEDIAN %d\n", (*a)->median);
 	count = 0;
 	if (len <= 3)
 		return (0);

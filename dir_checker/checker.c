@@ -80,7 +80,7 @@ extern	int		main(int argc, char **argv)
 		free(inst);
 	}
 	if (!op)
-		op = ft_stcknew(0);
+		op = ft_stcknew(0, 0);
 	do_inst(&a, &b, op);
 	check_sort(a, b);
 	ft_stckdel(&op);

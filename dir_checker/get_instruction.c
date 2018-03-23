@@ -47,7 +47,7 @@ extern	void	get_instruction(char *inst, t_stack **op)
 
 	nb = is_valid_instruction(inst);
 	if (nb != -1)
-		ft_stckaddback(op, ft_stcknew(nb));
+		ft_stckaddback(op, ft_stcknew(nb, 0));
 	else
 	{
 		if (*op != NULL)
