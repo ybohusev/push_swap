@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_pa_all.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/17 13:53:33 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/17 13:53:34 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/24 16:51:53 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/24 16:51:54 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int		main(int argc, char **argv)
+void	pa_all(t_stack **a, t_stack **b)
 {
-	t_stack	*a;
-	t_stack	*b;
+	int		top_median;
+	t_stack	*tmp;
 
-	a = NULL; 
-	b = NULL;
-	if (argc == 1)
-		return (0);
-	a = ft_stckinit(argv, argc - 1);
-	basic_algor(a, b, 0);
-	return (0);
+	top_median = (*b)->median;
+	tmp = *b;
+	while (tmp && tmp->median == top_median)
+	{
+		pa_pb(a, b, 'a', 1);
+		tmp = tmp->next;
+	}
 }

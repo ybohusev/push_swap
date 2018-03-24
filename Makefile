@@ -46,6 +46,13 @@ SRC_PUSH_SWAP =
 
 SRC_PUSH_SWAP += ps_basic_algor.c
 SRC_PUSH_SWAP += push_swap.c
+SRC_PUSH_SWAP += ps_pa_while.c
+SRC_PUSH_SWAP += ps_pb_while.c
+SRC_PUSH_SWAP += ps_sort_a.c
+SRC_PUSH_SWAP += ps_sort_top_a.c
+SRC_PUSH_SWAP += ps_pa_all.c
+SRC_PUSH_SWAP += ps_rra_while.c
+SRC_PUSH_SWAP += ps_rrb_while.c
 
 STACK = 
 
@@ -66,6 +73,7 @@ STACK += ft_stckrot.c
 STACK += ft_stckswap.c
 STACK += is_valid_argument.c
 STACK += operations.c
+STACK += ft_stckissorted.c
 
 SRCS_PUSH = $(addprefix $(DIR_PUSH)/,$(SRC_PUSH_SWAP))
 SRCS_CHECKER = $(addprefix $(DIR_CHECKER)/,$(SRC_CHECKER))
@@ -75,25 +83,25 @@ OBJS_PUSH = $(addprefix $(DIR_PUSH_O)/,$(SRC_PUSH_SWAP:.c=.o))
 OBJS_STACK = $(addprefix $(DIR_STACK_O)/,$(STACK:.c=.o))
 OBJS_CHECKER = $(addprefix $(DIR_CHECKER_O)/,$(SRC_CHECKER:.c=.o))
 
-all: get_lib get_stack_o $(PUSH_SWAP) $(CHECKER)
+all: get_lib $(PUSH_SWAP) $(CHECKER)
 
 get_lib:
 	@make -C $(LIBFT)
 
-get_stack_o: $(OBJS_STACK)
+# get_stack_o: $(OBJS_STACK)
 
 $(DIR_STACK_O)/%.o: $(DIR_STACK)/%.c
 	@mkdir -p $(DIR_STACK_O)
 	@$(C) $(FLAGS) -c -I $(INCLUDES) -o $@ -c $<
 
-$(PUSH_SWAP): $(OBJS_PUSH)
+$(PUSH_SWAP): $(OBJS_STACK) $(OBJS_PUSH)
 	@$(C) $(FLAGS) -o $(PUSH_SWAP) $(OBJS_PUSH) $(OBJS_STACK) $(LIB) -I $(INCLUDES)
 
 $(DIR_PUSH_O)/%.o: $(DIR_PUSH)/%.c
 	@mkdir -p $(DIR_PUSH_O)
 	@$(C) $(FLAGS) -c -I $(INCLUDES) -o $@ -c $<
 
-$(CHECKER): $(OBJS_CHECKER)
+$(CHECKER): $(OBJS_STACK) $(OBJS_CHECKER)
 	@$(C) $(FLAGS) -o $(CHECKER) $(OBJS_CHECKER) $(OBJS_STACK) $(LIB) -I $(INCLUDES)
 
 $(DIR_CHECKER_O)/%.o: $(DIR_CHECKER)/%.c

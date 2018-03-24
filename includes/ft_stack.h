@@ -37,6 +37,7 @@ void				ft_stckdel(t_stack **stack);
 void				ft_stckprint(t_stack *stack, char *s_name);
 int					ft_stcklen(t_stack *stack);
 void				ft_stckgetmedian(t_stack *stack);
+int					is_sorted(t_stack *a);
 
 void				sa_sb_ss(t_stack *a, t_stack *b, char mode, int pr);
 void				pa_pb(t_stack **a, t_stack **b, char mode, int pr);

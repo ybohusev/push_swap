@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_stckissorted.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/17 13:53:33 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/03/17 13:53:34 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/03/24 14:52:20 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/03/24 14:52:23 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#include "ft_stack.h"
 
-int		main(int argc, char **argv)
+int		is_sorted(t_stack *a)
 {
-	t_stack	*a;
-	t_stack	*b;
-
-	a = NULL; 
-	b = NULL;
-	if (argc == 1)
+	if (!a)
 		return (0);
-	a = ft_stckinit(argv, argc - 1);
-	basic_algor(a, b, 0);
-	return (0);
+	while (a->next)
+	{
+		if (a->content < a->next->content)
+			a = a->next;
+		else
+			return (0);	
+	}
+	return (1);
 }
