@@ -51,6 +51,7 @@ extern	void	basic_algor(t_stack *a, t_stack *b, int flag)
 {
 	if (is_sorted(a) && !b)
 		return ;
+	// print_a_b(a, b);
 	stage_one(&a, &b, flag);
 	// print_a_b(a, b);
 	stage_two(&a, &b);

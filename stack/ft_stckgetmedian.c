@@ -67,5 +67,5 @@ extern	void	ft_stckgetmedian(t_stack *stack)
 	}
 	sort_array(a, len);
 	put_median(stack, a[len / 2], curr_median);
-	// free(a);
+	free(a);
 }
