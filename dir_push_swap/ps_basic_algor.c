@@ -36,9 +36,11 @@ static	void	stage_two(t_stack **a, t_stack **b)
 	count = 0;
 	if (!(*b))
 		return ;
-	ft_stckgetmedian(*b);
 	if (median_len(*b, (*b)->median) <= 3)
+	{
+		ft_stckgetmedian(*b);
 		pa_all(a, b);
+	}
 	else
 	{
 		count += pa_while(a, b);
