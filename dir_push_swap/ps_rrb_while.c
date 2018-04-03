@@ -12,11 +12,25 @@
 
 #include "push_swap.h"
 
-void	rrb_while(t_stack **a, t_stack **b, int count)
+static	void	pa_back(t_stack **a, t_stack **b)
 {
-	while (count)
+	if ((*b)->content >= (*b)->median)
+		pa_pb(a, b, 'a', 1);
+}
+
+extern	void	rrb_while(t_stack **a, t_stack **b)
+{
+	t_stack	*tmp;
+
+	tmp = *b;
+	while (tmp->next)
+		tmp = tmp->next;
+	if ((*b)->median <= tmp->median)
 	{
 		rra_rrb_rrr(a, b, 'b', 1);
-		count--;
+		pa_back(a, b);
 	}
+	else
+		return ;
+	rrb_while(a, b);
 }

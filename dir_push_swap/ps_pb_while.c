@@ -12,16 +12,34 @@
 
 #include "push_swap.h"
 
+static	int		search_min(t_stack *stack)
+{
+	int		min;
+	int		median;
+	
+	median = stack->median;
+	min = stack->content;
+	while (stack && stack->median == median)
+	{
+		if (stack->content < min)
+			min = stack->content;
+		stack = stack->next;
+	}
+	return (min);
+}
+
 static	int		push_one(t_stack **a, t_stack **b)
 {
 	int		count;
 	int		j;
+	int		min;
 
 	count = 0;
 	j = 0;
+	min = search_min(*a);
 	while (j < 4)
 	{
-		if ((*a)->content < (*a)->median)
+		if ((*a)->content == min)
 		{
 			pa_pb(a, b, 'b', 1);
 			return (count);
@@ -47,7 +65,7 @@ static	int		do_act(t_stack **a, t_stack **b, int len)
 	count = 0;
 	while (curr_len)
 	{
-		if ((*a)->content < (*a)->median || ((*a)->content == (*a)->median && len % 2 != 0))
+		if ((*a)->content < (*a)->median)
 		{
 			count_pb++;
 			pa_pb(a, b, 'b', 1);
@@ -57,7 +75,7 @@ static	int		do_act(t_stack **a, t_stack **b, int len)
 			ra_rb_rr(a, b, 'a', 1);
 			count++;
 		}
-		if (len / 2 == count_pb && len % 2 == 0)
+		if ((len / 2 == count_pb))
 			return (count);
 		curr_len--;
 	}
@@ -68,7 +86,6 @@ extern	int		pb_while(t_stack **a, t_stack **b)
 {
 	int		len;
 
-	ft_stckgetmedian(*a);
 	len = median_len(*a, (*a)->median);
 	if (len == 4)
 		return (push_one(a, b));

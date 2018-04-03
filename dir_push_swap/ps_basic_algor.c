@@ -19,14 +19,19 @@ static	void	stage_one(t_stack **a, t_stack **b, int flag)
 	while (median_len(*a, (*a)->median) > 3)
 	{
 		count = 0;
+		ft_stckgetmedian(*a);
 		count = pb_while(a, b);
 		if (flag)
 			rra_while(a, b, count);
+		if (*b)
+			ft_stckgetmedian(*b);
 	}
 	if (!flag)
 		sort_a(a, b);
 	else
 		sort_top_a(a, b);
+	if (*b)
+		ft_stckgetmedian(*b);
 }
 
 static	void	stage_two(t_stack **a, t_stack **b)
@@ -37,16 +42,15 @@ static	void	stage_two(t_stack **a, t_stack **b)
 	if (!(*b))
 		return ;
 	if (median_len(*b, (*b)->median) <= 3)
-	{
-		ft_stckgetmedian(*b);
 		pa_all(a, b);
-	}
 	else
-	{
 		count += pa_while(a, b);
-		if (ft_stcklen(*b) != median_len(*b, (*b)->median))
-			rrb_while(a, b, count);
-	}
+	if (median_len(*a, (*a)->median) > 3)
+		stage_one(a, b, 1);
+	else
+		sort_top_a(a, b);
+	if (*b && ft_stcklen(*b) != median_len(*b, (*b)->median))
+		rrb_while(a, b);
 }
 
 extern	void	basic_algor(t_stack *a, t_stack *b, int flag)
@@ -60,3 +64,6 @@ extern	void	basic_algor(t_stack *a, t_stack *b, int flag)
 	// print_a_b(a, b);
 	basic_algor(a, b, 1);
 }
+
+
+/*711*/
