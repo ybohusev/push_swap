@@ -23,5 +23,7 @@ void	rra_while(t_stack **a, t_stack **b, int count);
 void	rrb_while(t_stack **a, t_stack **b);
 void	pa_all(t_stack **a, t_stack **b);
 void	sort_top_a(t_stack **a, t_stack **b);
+void	sort_b(t_stack **a, t_stack **b);
+void	sort_top_b(t_stack **a, t_stack **b);
 
 #endif

@@ -33,7 +33,7 @@ static	int		do_act(t_stack **a, t_stack **b, int len)
 			ra_rb_rr(a, b, 'b', 1);
 			count++;
 		}
-		if (len / 2 == count_pb)
+		if ((len / 2 == count_pb && len % 2 != 0) || ((len / 2) - 1 == count_pb && len % 2 == 0))
 			return (count);
 		curr_len--;
 	}

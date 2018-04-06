@@ -53,6 +53,8 @@ SRC_PUSH_SWAP += ps_sort_top_a.c
 SRC_PUSH_SWAP += ps_pa_all.c
 SRC_PUSH_SWAP += ps_rra_while.c
 SRC_PUSH_SWAP += ps_rrb_while.c
+SRC_PUSH_SWAP += ps_sort_b.c
+SRC_PUSH_SWAP += ps_sort_top_b.c
 
 STACK = 
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_sort_top_a.c                                    :+:      :+:    :+:   */
+/*   ps_sort_top_b.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,60 +14,60 @@
 
 static	void	median_first(t_stack **a, t_stack **b)
 {
-	if ((*a)->content > (*a)->next->content)
-		sa_sb_ss(*a, *b, 'a', 1);
-	else if ((*a)->content < (*a)->next->content)
+	if ((*b)->content < (*b)->next->content)
+		sa_sb_ss(*a, *b, 'b', 1);
+	else if ((*b)->content > (*b)->next->content)
 	{
-		ra_rb_rr(a, b, 'a', 1);
-		sa_sb_ss(*a, *b, 'a', 1);
-		rra_rrb_rrr(a, b, 'a', 1);
-		sa_sb_ss(*a, *b, 'a', 1);
+		ra_rb_rr(a, b, 'b', 1);
+		sa_sb_ss(*a, *b, 'b', 1);
+		rra_rrb_rrr(a, b, 'b', 1);
+		sa_sb_ss(*a, *b, 'b', 1);
 	}
 }
 
 static	void	median_second(t_stack **a, t_stack **b)
 {
-	sa_sb_ss(*a, *b, 'a', 1);
-	ra_rb_rr(a, b, 'a', 1);
-	sa_sb_ss(*a, *b, 'a', 1);
-	rra_rrb_rrr(a, b, 'a', 1);
-	sa_sb_ss(*a, *b, 'a', 1);
+	sa_sb_ss(*a, *b, 'b', 1);
+	ra_rb_rr(a, b, 'b', 1);
+	sa_sb_ss(*a, *b, 'b', 1);
+	rra_rrb_rrr(a, b, 'b', 1);
+	sa_sb_ss(*a, *b, 'b', 1);
 }
 
 static	void	median_last(t_stack **a, t_stack **b)
 {
-	if ((*a)->content > (*a)->next->content)
+	if ((*b)->content < (*b)->next->content)
 	{
-		sa_sb_ss(*a, *b, 'a', 1);
-		ra_rb_rr(a, b, 'a', 1);
-		sa_sb_ss(*a, *b, 'a', 1);
-		rra_rrb_rrr(a, b, 'a', 1);
+		sa_sb_ss(*a, *b, 'b', 1);
+		ra_rb_rr(a, b, 'b', 1);
+		sa_sb_ss(*a, *b, 'b', 1);
+		rra_rrb_rrr(a, b, 'b', 1);
 	}
-	else if ((*a)->content < (*a)->next->content)
+	else if ((*b)->content > (*b)->next->content)
 	{
-		ra_rb_rr(a, b, 'a', 1);
-		sa_sb_ss(*a, *b, 'a', 1);
-		rra_rrb_rrr(a, b, 'a', 1);
+		ra_rb_rr(a, b, 'b', 1);
+		sa_sb_ss(*a, *b, 'b', 1);
+		rra_rrb_rrr(a, b, 'b', 1);
 	}
 }
 
 static	void	sort_three(t_stack **a, t_stack **b)
 {
-	if ((*a)->content == (*a)->median)
+	if ((*b)->content == (*b)->median)
 		median_first(a, b);
-	else if ((*a)->next->content == (*a)->median && (*a)->content > (*a)->next->next->content)
+	else if ((*b)->next->content == (*b)->median && (*b)->content > (*b)->next->next->content)
 		median_second(a, b);
-	else if ((*a)->next->next->content == (*a)->median)
+	else if ((*b)->next->next->content == (*b)->median)
 		median_last(a, b);
 }
 
-extern	void	sort_top_a(t_stack **a, t_stack **b)
+extern	void	sort_top_b(t_stack **a, t_stack **b)
 {
-	ft_stckgetmedian(*a);
-	if (is_sorted(*a))
+	ft_stckgetmedian(*b);
+	if (is_sorted_des(*b))
 		return ;
-	if (median_len(*a, (*a)->median) < 3)
-		sa_sb_ss(*a, *b, 'a', 1);
-	else
+	if (median_len(*b, (*b)->median) == 2)
+		sa_sb_ss(*a, *b, 'b', 1);
+	else if (median_len(*b, (*b)->median) > 2)
 		sort_three(a, b);
 }
