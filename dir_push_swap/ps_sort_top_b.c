@@ -43,12 +43,6 @@ static	void	median_last(t_stack **a, t_stack **b)
 		sa_sb_ss(*a, *b, 'b', 1);
 		rra_rrb_rrr(a, b, 'b', 1);
 	}
-	else if ((*b)->content > (*b)->next->content)
-	{
-		ra_rb_rr(a, b, 'b', 1);
-		sa_sb_ss(*a, *b, 'b', 1);
-		rra_rrb_rrr(a, b, 'b', 1);
-	}
 }
 
 static	void	sort_three(t_stack **a, t_stack **b)

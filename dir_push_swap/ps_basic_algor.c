@@ -65,12 +65,8 @@ extern	void	basic_algor(t_stack *a, t_stack *b, int flag)
 		return ;
 	// print_a_b(a, b);
 	stage_one(&a, &b, flag);
-	print_a_b(a, b);
+	// print_a_b(a, b);
 	stage_two(&a, &b);
-	print_a_b(a, b);
+	// print_a_b(a, b);
 	basic_algor(a, b, 1);
 }
-
-//734
-//730
-//707

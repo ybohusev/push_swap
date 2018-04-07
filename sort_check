@@ -1,0 +1,2 @@
+ARG=$(./rand.py)
+./push_swap $ARG
