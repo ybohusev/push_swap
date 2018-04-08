@@ -21,7 +21,7 @@ int		is_sorted(t_stack *a)
 		if (a->content < a->next->content)
 			a = a->next;
 		else
-			return (0);	
+			return (0);
 	}
 	return (1);
 }
@@ -38,7 +38,7 @@ int		is_sorted_des(t_stack *b)
 		if (b->content > b->next->content)
 			b = b->next;
 		else
-			return (0);	
+			return (0);
 	}
 	return (1);
 }

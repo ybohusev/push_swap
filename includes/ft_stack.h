@@ -14,7 +14,6 @@
 # define FT_STACK_H
 
 # include "libft.h"
-# include <stdio.h>
 
 typedef	struct		s_stack
 {

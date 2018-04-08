@@ -62,11 +62,12 @@ static	void	stage_two(t_stack **a, t_stack **b)
 extern	void	basic_algor(t_stack *a, t_stack *b, int flag)
 {
 	if (is_sorted(a) && !b)
+	{
+		ft_stckdel(&a);
+		free(a);
 		return ;
-	// print_a_b(a, b);
+	}
 	stage_one(&a, &b, flag);
-	// print_a_b(a, b);
 	stage_two(&a, &b);
-	// print_a_b(a, b);
 	basic_algor(a, b, 1);
 }

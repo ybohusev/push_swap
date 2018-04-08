@@ -16,7 +16,7 @@ static	int		search_min(t_stack *stack)
 {
 	int		min;
 	int		median;
-	
+
 	median = stack->median;
 	min = stack->content;
 	while (stack && stack->median == median)

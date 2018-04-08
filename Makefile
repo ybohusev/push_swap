@@ -41,6 +41,10 @@ SRC_CHECKER =
 
 SRC_CHECKER += checker.c
 SRC_CHECKER += get_instruction.c
+SRC_CHECKER += ch_do_inst.c
+SRC_CHECKER += ch_check_sort.c
+SRC_CHECKER += ch_check_flags.c
+SRC_CHECKER += ch_stat.c
 
 SRC_PUSH_SWAP = 
 

@@ -27,6 +27,16 @@
 # define RRB 10
 # define RRR 11
 
-void	get_instruction(char *inst, t_stack **op);
+typedef	struct	s_flags
+{
+	int			v;
+	int			s;
+}				t_flags;
+
+void			get_instruction(char *inst, t_stack **op);
+void			do_inst(t_stack **a, t_stack **b, t_stack *inst, int v);
+void			check_sort(t_stack *a, t_stack *b);
+t_flags			check_flags(char ***argv, int *argc);
+void			stat(t_stack *inst);
 
 #endif

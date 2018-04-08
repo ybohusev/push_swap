@@ -33,7 +33,8 @@ static	int		do_act(t_stack **a, t_stack **b, int len)
 			ra_rb_rr(a, b, 'b', 1);
 			count++;
 		}
-		if ((len / 2 == count_pb && len % 2 != 0) || ((len / 2) - 1 == count_pb && len % 2 == 0))
+		if ((len / 2 == count_pb && len % 2 != 0) ||
+			((len / 2) - 1 == count_pb && len % 2 == 0))
 			return (count);
 		curr_len--;
 	}
@@ -44,7 +45,7 @@ static	int		search_min(t_stack *stack)
 {
 	int		min;
 	int		median;
-	
+
 	median = stack->median;
 	min = stack->content;
 	while (stack && stack->median == median)
@@ -56,23 +57,21 @@ static	int		search_min(t_stack *stack)
 	return (min);
 }
 
-static	int		push_one(t_stack **a, t_stack **b)
+static	int		push_one(t_stack **a, t_stack **b, int min)
 {
 	int		count;
 	int		j;
 	int		count_pb;
-	int		min;
 
 	count = 0;
 	count_pb = 0;
 	j = 0;
-	min = search_min(*b);
 	while (j < 4)
 	{
 		if ((*b)->content > min)
 		{
 			pa_pb(a, b, 'a', 1);
-			count_pb++;;
+			count_pb++;
 		}
 		else
 		{
@@ -86,13 +85,13 @@ static	int		push_one(t_stack **a, t_stack **b)
 	return (count);
 }
 
-int		pa_while(t_stack **a, t_stack **b)
+extern	int		pa_while(t_stack **a, t_stack **b)
 {
 	int		len;
 
 	len = median_len(*b, (*b)->median);
 	if (len == 4)
-		return (push_one(a, b));
+		return (push_one(a, b, search_min(*b)));
 	if (len > 4)
 		return (do_act(a, b, len));
 	return (0);

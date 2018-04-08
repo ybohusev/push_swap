@@ -22,10 +22,11 @@ static	void	sort_more(t_stack **a, t_stack **b)
 		else if ((*b)->content > (*b)->next->content)
 			rra_rrb_rrr(a, b, 'b', 1);
 	}
-	else if ((*b)->next->content == (*b)->median && (*b)->content < (*b)->next->next->content)
+	else if ((*b)->next->content == (*b)->median &&
+			(*b)->content < (*b)->next->next->content)
 	{
-			ra_rb_rr(a, b, 'b', 1);
-			sa_sb_ss(*a, *b, 'b', 1);
+		ra_rb_rr(a, b, 'b', 1);
+		sa_sb_ss(*a, *b, 'b', 1);
 	}
 	else if ((*b)->next->next->content == (*b)->median)
 	{

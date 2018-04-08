@@ -55,7 +55,8 @@ static	void	sort_three(t_stack **a, t_stack **b)
 {
 	if ((*a)->content == (*a)->median)
 		median_first(a, b);
-	else if ((*a)->next->content == (*a)->median && (*a)->content > (*a)->next->next->content)
+	else if ((*a)->next->content == (*a)->median &&
+			(*a)->content > (*a)->next->next->content)
 		median_second(a, b);
 	else if ((*a)->next->next->content == (*a)->median)
 		median_last(a, b);

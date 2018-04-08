@@ -15,7 +15,6 @@
 void	ft_stckprint(t_stack *stack, char *s_name)
 {
 	char	*tmp;
-	char	*med;
 
 	ft_putstr("\033[33m*******\033[37m\n");
 	if (!stack)
@@ -23,14 +22,9 @@ void	ft_stckprint(t_stack *stack, char *s_name)
 	while (stack)
 	{
 		tmp = ft_itoa(stack->content);
-		med = ft_itoa(stack->median);
 		ft_putstr(tmp);
-		ft_putstr("\t");
-		ft_putstr("median ");
-		ft_putstr(med);
 		ft_putstr("\n");
 		free(tmp);
-		free(med);
 		stack = stack->next;
 	}
 	ft_putstr("\033[33m_______\033[31m\n");

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import random
 
@@ -7,7 +7,7 @@ L = []
 j = 1
 
 while len(L) <= 99:
-	x = random.randint(1, 1000)
+	x = random.randint(1, 100)
 	for i in L:
 		if (x == i):
 			j = 0
@@ -16,5 +16,4 @@ while len(L) <= 99:
 	j = 1
 
 for x in L:
-	print(x, end=" ")
-print('\n', end='')
+	print x,

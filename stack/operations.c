@@ -102,5 +102,5 @@ void	print_a_b(t_stack *a, t_stack *b)
 	ft_stckprint(a, "stack A");
 	ft_putstr("\n");
 	ft_stckprint(b, "stack B");
-	ft_putstr("\n");
+	ft_putstr("\n\n\n");
 }
