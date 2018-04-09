@@ -64,7 +64,6 @@ extern	void	basic_algor(t_stack *a, t_stack *b, int flag)
 	if (is_sorted(a) && !b)
 	{
 		ft_stckdel(&a);
-		free(a);
 		return ;
 	}
 	stage_one(&a, &b, flag);

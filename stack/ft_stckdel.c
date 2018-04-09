@@ -23,4 +23,5 @@ void	ft_stckdel(t_stack **stack)
 	}
 	while ((*stack)->next)
 		ft_stckdellast(stack);
+	free(*stack);
 }
