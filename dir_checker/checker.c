@@ -49,6 +49,5 @@ extern	int		main(int argc, char **argv)
 	check_sort(a, b);
 	ft_stckdel(&op);
 	ft_stckdel(&a);
-	system("leaks checker");
 	return (0);
 }
